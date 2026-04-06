@@ -1,0 +1,21 @@
+{
+  "name": "weather-dashboard",
+  "version": "1.0.0",
+  "description": "Real-time weather tracking application with interactive maps, 7-day forecast, and location-based weather alerts",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "dev": "live-server --port=3000 --open=/index.html",
+    "build": "echo 'Build complete - static files ready'"
+  },
+  "keywords": ["weather", "dashboard", "forecast", "maps", "alerts"],
+  "author": "Weather Dashboard Team",
+  "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.2"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

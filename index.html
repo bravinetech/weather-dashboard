@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard - Real-time Weather Tracking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>⛅ Weather Dashboard</h1>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search for a city..." />
+                    <button id="search-btn">🔍</button>
+                    <button id="location-btn">📍</button>
+                </div>
+                <div class="theme-toggle">
+                    <button id="theme-toggle-btn" class="theme-btn">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+                <div class="features-toggle">
+                    <button id="features-btn" class="features-btn">
+                        <span>⚡</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Current Weather Section -->
+            <section class="current-weather">
+                <div class="weather-card">
+                    <div class="location-info">
+                        <h2 id="city-name">Loading...</h2>
+                        <p id="last-updated"></p>
+                    </div>
+                    <div class="weather-main">
+                        <div class="temperature-display">
+                            <span id="temperature">--</span>°C
+                            <div class="weather-icon" id="weather-icon">
+                                <span>--</span>
+                            </div>
+                        </div>
+                        <div class="weather-description">
+                            <p id="weather-desc">--</p>
+                            <p id="feels-like">Feels like --°C</p>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <span class="label">Humidity</span>
+                            <span id="humidity">--%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Wind Speed</span>
+                            <span id="wind-speed">-- m/s</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Pressure</span>
+                            <span id="pressure">-- hPa</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Visibility</span>
+                            <span id="visibility">-- km</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">UV Index</span>
+                            <span id="uv-index">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Sunrise</span>
+                            <span id="sunrise">--:--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Sunset</span>
+                            <span id="sunset">--:--</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Weather Insights Section -->
+            <section class="ai-insights-section">
+                <div class="ai-insights-container">
+                    <h3>🤖 AI Weather Insights</h3>
+                    <div class="insight-card" id="ai-insight-card">
+                        <div class="insight-icon" id="insight-icon">🏃</div>
+                        <div class="insight-content">
+                            <h4 id="insight-title">Perfect day for a run!</h4>
+                            <p id="insight-description">The temperature is ideal and there's plenty of sunshine. Great outdoor weather!</p>
+                        </div>
+                        <div class="insight-score">
+                            <span class="score-label">Activity Score</span>
+                            <div class="score-bar">
+                                <div class="score-fill" id="score-fill"></div>
+                            </div>
+                            <span class="score-value" id="score-value">85%</span>
+                        </div>
+                    </div>
+                    <div class="insight-recommendations" id="insight-recommendations">
+                        <div class="recommendation-item">
+                            <span class="rec-icon">👕</span>
+                            <span class="rec-text">Light clothing recommended</span>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="rec-icon">🧴</span>
+                            <span class="rec-text">Don't forget sunscreen</span>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="rec-icon">💧</span>
+                            <span class="rec-text">Stay hydrated</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weather Alerts Section -->
+            <section class="weather-alerts" id="alertsSection" style="display: none;">
+                <div class="alerts-container">
+                    <h3>⚠️ Weather Alerts</h3>
+                    <div id="alertsList"></div>
+                </div>
+            </section>
+
+            <!-- Interactive Map Section -->
+            <section class="map-section">
+                <div class="map-container">
+                    <h3>Interactive Weather Map</h3>
+                    <div id="weatherMap"></div>
+                    <div class="map-controls">
+                        <button id="toggleTempLayer">Temperature</button>
+                        <button id="togglePrecipLayer">Precipitation</button>
+                        <button id="toggleWindLayer">Wind</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7-Day Forecast Section -->
+            <section class="forecast-section">
+                <div class="forecast-container">
+                    <h3>7-Day Forecast</h3>
+                    <div class="forecast-grid" id="forecast-grid">
+                        <!-- Forecast cards will be inserted here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hourly Forecast Section -->
+            <section class="hourly-section">
+                <div class="hourly-container">
+                    <h3>Hourly Forecast</h3>
+                    <div class="hourly-scroll" id="hourly-forecast">
+                    <div class="hourly-scroll" id="hourlyForecast">
+                        <!-- Hourly items will be inserted here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Weather Dashboard. Data provided by OpenWeather API</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Loading weather data...</p>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Error</h3>
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/weatherAPI.js"></script>
+    <script src="js/mapManager.js"></script>
+    <script src="js/uiManager.js"></script>
+    <script src="js/weatherAnimations.js"></script>
+    <script src="js/themeManager.js"></script>
+    <script src="js/weatherGlobe.js"></script>
+    <script src="js/smartNotifications.js"></script>
+    <script src="js/weatherSounds.js"></script>
+    <script src="js/weatherWidgets.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Weather Animation Canvas -->
+    <canvas id="weatherCanvas" class="weather-canvas"></canvas>
+    
+    <!-- 3D Globe Canvas -->
+    <canvas id="globeCanvas" class="globe-canvas"></canvas>
+</body>
+</html>
