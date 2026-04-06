@@ -330,6 +330,13 @@ class WeatherWidgets {
                     </div>
                 </div>
                 <div class="widget-section">
+                    <h4>📊 Weather Charts</h4>
+                    <div class="charts-controls">
+                        <button class="chart-control-btn" id="toggle-charts">Toggle Charts</button>
+                        <button class="chart-control-btn" id="refresh-charts">Refresh Data</button>
+                    </div>
+                </div>
+                <div class="widget-section">
                     <h4>🌍 3D Globe</h4>
                     <div class="globe-controls">
                         <button class="globe-btn" id="globe-toggle">Toggle Globe</button>
@@ -373,6 +380,29 @@ class WeatherWidgets {
             });
         });
         
+        // Chart controls
+        const toggleCharts = panel.getElementById('toggle-charts');
+        if (toggleCharts) {
+            toggleCharts.addEventListener('click', () => {
+                if (window.weatherCharts) {
+                    window.weatherCharts.toggle();
+                }
+            });
+        }
+        
+        const refreshCharts = panel.getElementById('refresh-charts');
+        if (refreshCharts) {
+            refreshCharts.addEventListener('click', () => {
+                if (window.app && window.app.currentWeatherData) {
+                    const currentWeather = window.app.currentWeatherData.current;
+                    const forecast = window.app.currentWeatherData;
+                    if (window.weatherCharts) {
+                        window.weatherCharts.updateCharts(currentWeather, forecast);
+                    }
+                }
+            });
+        }
+
         // Globe controls
         const globeToggle = panel.getElementById('globe-toggle');
         if (globeToggle) {

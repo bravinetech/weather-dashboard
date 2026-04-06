@@ -184,6 +184,32 @@ class WeatherApp {
             // Update real-time displays
             this.updateRealTimeDisplays(currentWeather, forecast);
 
+            // Update weather charts
+            if (window.weatherCharts) {
+                window.weatherCharts.updateCharts(currentWeather, forecast);
+                window.weatherCharts.addCurrentWeatherPoint(currentWeather);
+            }
+
+            // Update multi-location
+            if (window.multiLocationManager) {
+                // Update current location in multi-location manager
+                const currentLoc = window.multiLocationManager.getCurrentLocation();
+                if (currentLoc && currentLoc.coordinates) {
+                    const isSameLocation = 
+                        Math.abs(currentLoc.coordinates.lat - lat) < 0.01 &&
+                        Math.abs(currentLoc.coordinates.lon - lon) < 0.01;
+                    
+                    if (!isSameLocation) {
+                        // This is a new location, update or add it
+                        window.multiLocationManager.updateLocationWeather(
+                            currentLoc.id,
+                            currentWeather,
+                            forecast
+                        );
+                    }
+                }
+            }
+
             // Update map
             this.mapManager.setView(lat, lon);
             this.mapManager.updateWeatherMarker(lat, lon, this.currentWeatherData);
