@@ -2167,6 +2167,291 @@ body.light-mode .history-details {
     color: #666;
 }
 
+/* Predictive Analytics Section */
+.predictive-analytics {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.analytics-header h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+.analytics-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.analytics-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.analytics-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.analytics-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.analytics-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.analytics-card h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.prediction-chart {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.prediction-chart canvas {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.prediction-confidence {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.confidence-label {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.confidence-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    min-width: 60px;
+    text-align: center;
+}
+
+.probability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.probability-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.probability-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.probability-card.high {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.probability-card.medium {
+    border-color: #ff9800;
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.probability-card.low {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.prob-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.prob-title {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.prob-value {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.prob-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+}
+
+.trend-container {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.insights-container {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.insight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 3px solid #9c27b0;
+}
+
+.insight-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.insight-content {
+    flex: 1;
+}
+
+.insight-title {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.insight-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+/* Light mode predictive analytics */
+body.light-mode .predictive-analytics {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .analytics-header h2 {
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+body.light-mode .analytics-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .analytics-card h3 {
+    color: #333;
+}
+
+body.light-mode .confidence-label {
+    color: #333;
+}
+
+body.light-mode .confidence-value {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+body.light-mode .probability-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .probability-card.high {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+body.light-mode .probability-card.medium {
+    border-color: #ff9800;
+    background: rgba(255, 152, 0, 0.1);
+}
+
+body.light-mode .probability-card.low {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+body.light-mode .prob-title {
+    color: #333;
+}
+
+body.light-mode .prob-value {
+    color: #333;
+}
+
+body.light-mode .prob-desc {
+    color: #666;
+}
+
+body.light-mode .insight-item {
+    background: rgba(0, 0, 0, 0.05);
+    border-left: 3px solid #9c27b0;
+}
+
+body.light-mode .insight-title {
+    color: #333;
+}
+
+body.light-mode .insight-desc {
+    color: #666;
+}
+
 /* Loading Overlay */
 .loading-overlay {
     position: fixed;

@@ -210,6 +210,11 @@ class WeatherApp {
                 }
             }
 
+            // Collect data for predictive analytics
+            if (window.predictiveAnalytics) {
+                window.predictiveAnalytics.collectCurrentWeatherData(currentWeather);
+            }
+
             // Update map
             this.mapManager.setView(lat, lon);
             this.mapManager.updateWeatherMarker(lat, lon, this.currentWeatherData);
